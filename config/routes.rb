@@ -1,6 +1,16 @@
 Pocket::Application.routes.draw do
+  resources :categories
+
+
+  resources :comments
+
+
+  devise_for :users
+
   resources :items
 
+  # 2013/02/17
+  root :to => "item#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

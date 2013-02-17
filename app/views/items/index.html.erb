@@ -15,6 +15,7 @@
     <td><%= item.name %></td>
     <td><%= item.use_at %></td>
     <td><%= item.total %></td>
+    <td><%= item.user.email %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

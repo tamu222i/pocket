@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-
+logger.error current_user.id
+    #@items = Item.where(:user_id => current_user.id)
+    @items = Item.find_all_by_user_id(current_user.id)
+    #@items = Item.all
+logger.error @items
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @items }
@@ -41,6 +46,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
+    @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.save
