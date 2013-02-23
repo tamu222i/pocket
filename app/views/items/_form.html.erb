@@ -27,6 +27,12 @@
     <%= f.label :user_id %><br />
     <%= f.number_field :user_id %>
   </div>
+  <div class="field">
+    <%= f.label :categories %><br />
+    <input id="tag_name" name="categories[name]" size="30" type="text" /> 
+
+    <!-- <%= f.text_field :categories %> -->
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

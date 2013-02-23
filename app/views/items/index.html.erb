@@ -16,8 +16,10 @@
     <td><%= item.use_at %></td>
     <td><%= item.total %></td>
     <td><%= item.user.email %></td>
+    <td><%= item.categories[0].name unless item.categories[0].nil? %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Copy', item_copy_path(item) %></td>
     <td><%= link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>

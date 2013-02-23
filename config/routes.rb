@@ -7,7 +7,9 @@ Pocket::Application.routes.draw do
 
   devise_for :users
 
-  resources :items
+  resources :items do
+    get 'copy'
+  end
 
   # 2013/02/17
   root :to => "item#index"

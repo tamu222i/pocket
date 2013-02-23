@@ -8,7 +8,7 @@ logger.error current_user.id
     #@items = Item.where(:user_id => current_user.id)
     @items = Item.find_all_by_user_id(current_user.id)
     #@items = Item.all
-logger.error @items
+logger.error @items[1].categories[0].name.inspect
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @items }
@@ -22,6 +22,15 @@ logger.error @items
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render :json => @item }
+    end
+  end
+
+  def copy
+    @item = Item.find(params[:item_id])
+
+    respond_to do |format|
+      format.html { render :new }
       format.json { render :json => @item }
     end
   end
@@ -50,6 +59,7 @@ logger.error @items
 
     respond_to do |format|
       if @item.save
+        @item.categories.create(params[:categories])
         format.html { redirect_to @item, :notice => 'Item was successfully created.' }
         format.json { render :json => @item, :status => :created, :location => @item }
       else
