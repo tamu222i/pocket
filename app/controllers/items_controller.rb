@@ -27,7 +27,9 @@ logger.error @items[1].categories[0].name.inspect
   end
 
   def copy
-    @item = Item.find(params[:item_id])
+    item_from = Item.find(params[:item_id])
+    @item = Item.new
+    @item.initialize_dup(item_from)
 
     respond_to do |format|
       format.html { render :new }
