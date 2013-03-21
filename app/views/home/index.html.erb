@@ -1,0 +1,32 @@
+<h1>Listing items</h1>
+
+
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<div id="body"></div>
+<br />
+<%= link_to 'New Item', new_item_path %>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "js/home.js" %>
+<% end %>

@@ -30,13 +30,12 @@
     <!-- Size should be 57 x 57 pixels -->
     <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+<script src="/d3/d3-master/d3.js"></script>
+
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
+    <div class="navbar navbar-fluid-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -44,12 +43,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Pocket</a>
+          <a class="brand" href="<%= root_path %>">Pocket</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+<% if !@user %>
+              <li><%= link_to "items", :controller => '/items', :action => 'index'  %></li>
+              <li><%= link_to "categories", :controller => '/categories', :action => 'index'  %></li>
+              <li><%= link_to "comments", :controller => '/comments', :action => 'index'  %></li>
+              <li><%= render 'layouts/header' %></li>
+<% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -58,16 +60,6 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
           <%= yield %>
@@ -84,6 +76,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+<%= yield :javascript_includes %>
 
   </body>
 </html>

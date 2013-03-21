@@ -4,7 +4,7 @@ Pocket::Application.routes.draw do
 
   resources :comments
 
-
+  
   devise_for :users
 
   resources :items do
@@ -12,7 +12,9 @@ Pocket::Application.routes.draw do
   end
 
   # 2013/02/17
-  root :to => "item#index"
+  root :to => "items#index"
+
+  get '/home' => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
